@@ -1,6 +1,7 @@
 FROM eclipse-temurin:17-jre as builder
 WORKDIR application
-COPY --from=build build/libs/halo-2.0.jar application.jar
+ARG JAR_FILE=build/libs/halo-*.jar
+COPY ${JAR_FILE} application.jar
 RUN java -Djarmode=layertools -jar application.jar extract
 
 ################################
